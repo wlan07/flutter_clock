@@ -46,14 +46,15 @@ class MyApp extends StatelessWidget {
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
                   )),
-                  padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 30,vertical: 15)),
+                  padding: MaterialStateProperty.all(
+                      EdgeInsets.symmetric(horizontal: 30, vertical: 15)),
                   elevation: MaterialStateProperty.all(10),
                   backgroundColor:
                       MaterialStateProperty.all(Color(0xffd4a9b1))),
             )),
         home: BlocProvider(
-                          create: (context) => PageCubit()..init(),
-                          child: const MyClockHomeScreen(),
-                        ));
+          create: (context) => PageCubit()..init(),
+          child: const MyClockHomeScreen(),
+        ));
   }
 }

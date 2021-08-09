@@ -51,77 +51,87 @@ class AlarmItem extends StatelessWidget {
       child: Container(
         //color: Colors.red,
         width: double.infinity,
-        height: 80,
+        height: 65,
         child: Row(
           //mainAxisAlignment: MainAxisAlignment.start,
           //crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
                 child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Spacer(),
-                Row(
-                  children: [
-                    Text(
-                      "${alarmInfo.hour.toString().padLeft(2, "0")} : ${alarmInfo.minute.toString().padLeft(2, "0")}",
-                      style:
-                          TextStyle(fontSize: 35, fontWeight: FontWeight.w300),
-                    ),
-                    Text(
-                      alarmInfo.isAm == 0 ? " AM " : " PM ",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
-                    ),
-                    Text(
-                      "| ${alarmInfo.alarmName}",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-                    ),
-                  ],
-                ),
-                Spacer(),
-                Row(
-                  children: [
-                    if (alarmInfo.isActive == 1)
-                      Container(
-                        margin: const EdgeInsets.all(5.0),
-                        padding: const EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                            color: Color(0xffb24f57),
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Text(
-                          "Everyday",
+                Expanded(
+                  child: FittedBox(
+                    alignment: Alignment.centerLeft,
+                    fit: BoxFit.scaleDown,
+                    child: Row(
+                      children: [
+                        Text(
+                          "${alarmInfo.hour.toString().padLeft(2, "0")} : ${alarmInfo.minute.toString().padLeft(2, "0")}",
                           style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500),
+                              fontSize: 35, fontWeight: FontWeight.w300),
                         ),
-                      )
-                    else
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Text(
-                          "Off",
+                        Text(
+                          alarmInfo.isAm == 0 ? " AM " : " PM ",
                           style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w400),
+                              fontSize: 20, fontWeight: FontWeight.w400),
                         ),
-                      ),
-                    if (alarmInfo.isActive == 1)
-                      Text(
-                        context
-                            .read<AlarmviewCubit>()
-                            .getAlarmIn(alarmInfo.hour, alarmInfo.minute),
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Color(0xffb24f57),
-                            fontWeight: FontWeight.w400),
-                      )
-                  ],
+                        Text(
+                          "| ${alarmInfo.alarmName}",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.w700),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                Spacer()
+                Expanded(
+                  child: FittedBox(
+                    alignment: Alignment.centerLeft,
+                    fit: BoxFit.scaleDown,
+                    child: Row(
+                      children: [
+                        if (alarmInfo.isActive == 1)
+                          Container(
+                            margin: const EdgeInsets.all(5.0),
+                            padding: const EdgeInsets.all(8.0),
+                            decoration: BoxDecoration(
+                                color: Color(0xffb24f57),
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Text(
+                              "Everyday",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          )
+                        else
+                          Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Text(
+                              "Off",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                        if (alarmInfo.isActive == 1)
+                          Text(
+                            context
+                                .read<AlarmviewCubit>()
+                                .getAlarmIn(alarmInfo.hour, alarmInfo.minute),
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Color(0xffb24f57),
+                                fontWeight: FontWeight.w400),
+                          )
+                      ],
+                    ),
+                  ),
+                ),
               ],
             )),
             MySwitcher(
